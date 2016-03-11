@@ -1,0 +1,23 @@
+nginx:
+    build: ./images/nginx/
+    ports:
+        - 8080:80
+    links:
+        - fpm
+
+fpm:
+    image: php:fpm
+    links:
+        - mongo
+        - memcached
+    volumes:
+        - ./app:/data/project
+
+mongo:
+    image: mongo
+    volumes:
+        - ./data/mongo:/data/db
+
+memcached:
+    image: memcached
+
