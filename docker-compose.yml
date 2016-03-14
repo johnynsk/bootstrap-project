@@ -6,7 +6,7 @@ nginx:
         - fpm
 
 fpm:
-    image: php:fpm
+    build: ./images/php/
     links:
         - mongo
         - memcached
