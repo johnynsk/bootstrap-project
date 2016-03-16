@@ -1,7 +1,12 @@
 FROM php:5.6-fpm
 RUN apt-get update
-RUN apt-get install -y php5-mongo \
-    php5-memcached \
-    php5-pinba \
-    php5-xdebug
+RUN apt-get install -y \
+    libssl-dev \
+    libmemcached-dev
+
+RUN pecl install mongo \
+    && docker-php-ext-enable mongo
+
+RUN pecl install memcached \
+    && docker-php-ext-enable memcached
 
